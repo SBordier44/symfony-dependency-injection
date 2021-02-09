@@ -33,6 +33,11 @@ if (file_exists($containerCacheFile)) {
     $container->compile();
 
     $dumper = new PhpDumper($container);
+    if (!file_exists(__DIR__ . '/config/cache')) {
+        if (!mkdir($concurrentDirectory = __DIR__ . '/config/cache') && !is_dir($concurrentDirectory)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
+    }
     file_put_contents($containerCacheFile, $dumper->dump());
 }
 
