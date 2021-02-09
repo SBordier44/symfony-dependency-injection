@@ -1,0 +1,35 @@
+parameters:
+    mailer.gmail_user: 'magali@gmail.com'
+    mailer.gmail_password: 'toto'
+    firstName: 'Magali'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $firstName: "%firstName%"
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection}'
+
+    App\Controller\:
+        resource: '../src/Controller/*'
+        public: true
+
+    App\Mailer\MailerInterface:
+        alias: App\Mailer\GmailMailer
+
+    App\Texter\TexterInterface:
+        alias: App\Texter\SmsTexter
+
+    App\Mailer\GmailMailer:
+        arguments:
+            - '%mailer.gmail_user%'
+            - '%mailer.gmail_password%'
+
+    App\Texter\SmsTexter:
+        arguments:
+            - 'host.sms.com'
+            - 'apiKey1234'
