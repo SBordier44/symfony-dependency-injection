@@ -1,49 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Texter;
 
 class Text
 {
-    protected $to;
-    protected $content;
+    protected string $to;
+    protected string $content;
 
-    /**
-     * Get the value of to
-     */
-    public function getTo()
+    public function getTo(): string
     {
         return $this->to;
     }
 
-    /**
-     * Set the value of to
-     *
-     * @return  self
-     */
-    public function setTo($to)
+    public function setTo(string $to): self
     {
         $this->to = $to;
-
         return $this;
     }
 
-    /**
-     * Get the value of content
-     */
-    public function getContent()
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    /**
-     * Set the value of content
-     *
-     * @return  self
-     */
-    public function setContent($content)
+    public function setContent(string $content): self
     {
         $this->content = $content;
-
         return $this;
     }
 }

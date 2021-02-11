@@ -1,91 +1,57 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mailer;
 
 class Email
 {
-    protected $subject;
-    protected $body;
-    protected $to;
-    protected $from;
+    protected string $subject;
+    protected string $body;
+    protected string $to;
+    protected string $from;
 
-    /**
-     * Get the value of subject
-     */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
 
-    /**
-     * Set the value of subject
-     *
-     * @return  self
-     */
-    public function setSubject($subject)
+    public function setSubject(string $subject): self
     {
         $this->subject = $subject;
-
         return $this;
     }
 
-    /**
-     * Get the value of body
-     */
-    public function getBody()
+    public function getBody(): string
     {
         return $this->body;
     }
 
-    /**
-     * Set the value of body
-     *
-     * @return  self
-     */
-    public function setBody($body)
+    public function setBody(string $body): self
     {
         $this->body = $body;
-
         return $this;
     }
 
-    /**
-     * Get the value of to
-     */
-    public function getTo()
+    public function getTo(): string
     {
         return $this->to;
     }
 
-    /**
-     * Set the value of to
-     *
-     * @return  self
-     */
-    public function setTo($to)
+    public function setTo(string $to): self
     {
         $this->to = $to;
-
         return $this;
     }
 
-    /**
-     * Get the value of from
-     */
-    public function getFrom()
+    public function getFrom(): string
     {
         return $this->from;
     }
 
-    /**
-     * Set the value of from
-     *
-     * @return  self
-     */
-    public function setFrom($from)
+    public function setFrom(string $from): self
     {
         $this->from = $from;
-
         return $this;
     }
 }

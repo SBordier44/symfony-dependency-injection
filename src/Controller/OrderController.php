@@ -13,15 +13,12 @@ use App\Texter\TexterInterface;
 
 class OrderController
 {
-    protected TexterInterface $texter;
-    protected MailerInterface $mailer;
-    protected Database $database;
 
-    public function __construct(Database $database, MailerInterface $mailer, TexterInterface $texter)
-    {
-        $this->database = $database;
-        $this->mailer = $mailer;
-        $this->texter = $texter;
+    public function __construct(
+        protected Database $database,
+        protected MailerInterface $mailer,
+        protected TexterInterface $texter
+    ) {
     }
 
     public function placeOrder(): void
@@ -29,17 +26,17 @@ class OrderController
         $order = new Order($_POST['product'], (int)$_POST['quantity']);
 
         $email = new Email();
-        $email->setSubject("Préparer une commande")
+        $email->setSubject('Préparer une commande')
             ->setBody("Vous devez préparer {$order->getQuantity()} pour le produit {$order->getProduct()}")
-            ->setTo("stock@monstore.com")
-            ->setFrom("web@monstore.com");
+            ->setTo('stock@monstore.com')
+            ->setFrom('web@monstore.com');
         $this->mailer->send($email);
 
         $this->database->insertOrder($order);
 
         $textMessage = new Text();
         $textMessage->setTo($_POST['phone'])
-            ->setContent("Félicitation, votre commande arrive !");
+            ->setContent('Félicitation, votre commande arrive !');
 
         $this->texter->send($textMessage);
     }

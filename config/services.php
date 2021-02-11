@@ -14,7 +14,7 @@ use App\Texter\SmsTexter;
 use App\Texter\TexterInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return function (ContainerConfigurator $configurator) {
+return static function (ContainerConfigurator $configurator) {
     $parameters = $configurator->parameters();
     $parameters
         ->set('mailer.gmail_user', 'magali@gmail.com')

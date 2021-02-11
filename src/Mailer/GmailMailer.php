@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mailer;
 
 use App\HasLoggerInterface;
@@ -7,25 +9,17 @@ use App\Logger;
 
 class GmailMailer implements MailerInterface, HasLoggerInterface
 {
-
-    protected string $user;
-    protected string $password;
-    protected Logger $logger;
-
-    public function __construct(string $user, string $password)
+    public function __construct(protected string $user, protected string $password)
     {
-        $this->user = $user;
-        $this->password = $password;
     }
 
-    public function send(Email $email)
+    public function send(Email $email): void
     {
-        var_dump("ENVOI VIA GMAILMAILER", $email);
+        var_dump('ENVOI VIA GMAILMAILER', $email);
     }
 
     public function setLogger(Logger $logger): void
     {
-        $this->logger = $logger;
-        $this->logger->log('Log de GmailMailer');
+        $logger->log('Log de GmailMailer');
     }
 }

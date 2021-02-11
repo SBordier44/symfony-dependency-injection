@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class LoggerCompilerPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $serviceIds = $container->findTaggedServiceIds('with_logger');
 
